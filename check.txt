@@ -1,0 +1,20 @@
+improvements to do
+sessions?
+try catch
+
+systemlogin.php
+	instead of require_once do a class call in 
+	$_POST variables into an array
+	read $_POST variables
+
+
+
+to do
+error messages
+get method
+database class
+error handling class
+redirect
+MVC
+uncomment validations in systemlogin
+

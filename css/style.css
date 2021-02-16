@@ -23,6 +23,15 @@ a {
 h2 {
   font-size: 20px; }
 
+.div-error {
+    background: pink;
+    padding-left: 10px;
+}
+.p-error {
+  font-family: inherit;
+  color: red;  
+} 
+
 .form-block {
   background: #fff;
   padding: 60px;

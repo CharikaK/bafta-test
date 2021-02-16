@@ -33,7 +33,9 @@ function invalidUsername($name){
 
 function invalidpassword($password)
 {
-    if(!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A_Z]).{8,}$/',$password)){
+    // (?=.*[!@#$%^&*-]) - special characters
+
+    if(preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[A_Z]).{8,}$/',$password)){
         $result=true;
     }
     else{

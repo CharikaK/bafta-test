@@ -1,7 +1,6 @@
 <?php
 if(isset($_POST['submit']))
 {   
-
     $name=$_POST['useruname'];
     $password=$_POST['userpassword'];
 
@@ -10,8 +9,8 @@ if(isset($_POST['submit']))
 
     /**
      * $error = new ErrorHandling();
-     * $error->validations($_POST vars);     * 
-     */
+     * $error->validations($_POST vars);     
+     **/
     // this whole this would go to errorHandling class
     if(emptyCredentials($name,$password)){
         header('location: login.php?error=emptycredentials');
@@ -24,12 +23,54 @@ if(isset($_POST['submit']))
         exit();
     }
 
-    loginToTheSystem($_POST);
-
+    $userLevel = loginToTheSystem($conn,$_POST);
+    
+    switch ($userLevel) {
+        case 'novice':
+          header('location: views/level.php?level=novice');
+          break;
+        case 'intermediate':
+          header('location: views/level.php?level=intermediate');
+          break;
+        case 'expert':
+          header('location: views/level.php?level=expert');
+          break;          
+        default:
+          header('location: views/level.php?level=nolevel');
+      }
 
 }
 else{
     header('location: login.php');
     exit();
+}
+
+function loginToTheSystem($conn,$posts){   
+  
+    // from - here to to can go to database class 
+   $sql="SELECT * FROM users WHERE userUName=? AND userPassword=?;";
+   $stmt=mysqli_stmt_init($conn);
+
+   // Good to catch SQLInjections - preparing the SQL as an acceptance
+   if(!mysqli_stmt_prepare($stmt,$sql)){
+    header('location: login.php?error=sqlfail');
+    exit();
+   }
+
+   mysqli_stmt_bind_param($stmt,'ss',$posts['useruname'],$posts['userpassword']);
+   mysqli_stmt_execute($stmt);
+   // to
+
+   // return from the database class
+   $resultdata=mysqli_stmt_get_result($stmt);
+
+   if($row = mysqli_fetch_assoc($resultdata)){       
+        return $row['userLevel'];
+
+   }else{
+       $result = false;
+       return $result;
+   }
+
 }
 

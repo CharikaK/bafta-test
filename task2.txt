@@ -1,0 +1,26 @@
+There are many ways of encoding and decoding. 
+
+ 
+mbstring (multibyte strings)
+utf8_encode
+htmlspecialchars
+base64_encode and base64_decode
+urlencode
+str_rot13(), base64_encode(), and gzinflate are mainly for security for site contents
+
+I presume that you have given me the original massages as you have mentioned "how they might be encoded".
+The task does not say the media of this message. 
+If I go for php Multibyte String functions, Multibyte character encoding schemes were developed to express more than 256 characters in the regular bytewise coding system.
+mbstring is designed to handle Unicode-based encodings such as UTF-8 and UCS-2 and many single-byte encodings for convenience
+
+utf8_encode can be used if this is an HTML content and required to convert the string from ISO-8859-1 to UTF-8. And if the messages are nested string of arrays too.
+
+htmlspecialchars is not relevane for this task as this masseges do not have any special HTML characters. Again I am assuming that the given peice of string is not encoded. 
+
+base64_encode and base64_decode again to deal with HTML contents. Still we can use this way if the contents are on HTML medium, or email containt.
+
+str_rot13() can be used to both encode and decode. Again this is more to do with website content.
+
+gzdeflate() & gzinflate() is also good for security and this is better for website content.
+
+

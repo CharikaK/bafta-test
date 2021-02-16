@@ -35,7 +35,7 @@ if($level=='novice'){
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>BAFTA Test Login - Novice</title>
+    <title>BAFTA Test Login - Levels</title>
   </head>
 
   <body> 

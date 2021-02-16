@@ -25,6 +25,9 @@ if(isset($_POST['submit']))
 
     $userLevel = loginToTheSystem($conn,$_POST);
     
+    // can use the same page with relevant content 
+    // can redirect yo relevant .html pages
+
     switch ($userLevel) {
         case 'novice':
           header('location: views/level.php?level=novice');
@@ -45,6 +48,7 @@ else{
     exit();
 }
 
+// Procedural mysqli functions are used here.
 function loginToTheSystem($conn,$posts){   
   
     // from - here to to can go to database class 
@@ -58,8 +62,7 @@ function loginToTheSystem($conn,$posts){
    }
 
    mysqli_stmt_bind_param($stmt,'ss',$posts['useruname'],$posts['userpassword']);
-   mysqli_stmt_execute($stmt);
-   // to
+   mysqli_stmt_execute($stmt);   
 
    // return from the database class
    $resultdata=mysqli_stmt_get_result($stmt);
